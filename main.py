@@ -4,12 +4,9 @@ import dotenv
 
 dotenv.load_dotenv()
 API_KEY_CHATGPT=os.getenv('API_KEY_CHATGPT')
-
-MODEL="gpt-4o-mini"
+client=OpenAI()
+MINI="gpt-4o-mini"
 WHISPER="whisper-1"
-client = OpenAI(
-    api_key=API_KEY_CHATGPT
-)
 audio_file=open("Audio1.mp3", "rb") transcript=client.audio.transcriptions.create( model=WHISPER, file=audio_file, prompt="Traduce everything clear. In the last part, add a good prompt that preserve the context of the audio"
 
 )
@@ -18,7 +15,7 @@ if texto=="":
     texto="You have to answer the question and make helping suggestions for the task"
 
 stream = client.chat.completions.create(
-    model=MODEL,
+    model=MINI,
     messages=[
         {"role":"system", "content": texto},
         {"role": "user", "content": audio_file}
