@@ -1,0 +1,11 @@
+Una red neuronal es un modelo computacional inspirado en la estructura y funcionamiento del cerebro humano, diseñado para reconocer patrones, clasificar datos y realizar tareas complejas de aprendizaje automático. Una red neuronal está compuesta por unidades básicas llamadas "neuronas" o "nodos", que se organizan en capas: una capa de entrada, una o más capas ocultas y una capa de salida.
+
+1. **Capa de Entrada**: Recibe los datos de entrada y los pasa a la siguiente capa. Cada nodo en esta capa representa una característica del conjunto de datos.
+
+2. **Capas Ocultas**: Procesan la información recibida de la capa de entrada. Las redes con múltiples capas ocultas se conocen como redes neuronales profundas o "deep learning". Las capas ocultas transforman los datos a través de funciones de activación y pesos asignados que se optimizan durante el entrenamiento.
+
+3. **Capa de Salida**: Proporciona el resultado final o la predicción de la red neuronal. La salida depende de la tarea específica, como clasificación o regresión.
+
+Durante el proceso de entrenamiento, la red neuronal ajusta sus pesos internos utilizando un algoritmo de optimización (como el algoritmo de retropropagación y gradiente descendente) para minimizar el error entre las predicciones de la red y los valores reales conocidos.
+
+Las redes neuronales son utilizadas en una variedad de aplicaciones, desde reconocimiento de imágenes y procesamiento de lenguaje natural hasta predicciones financieras y vehículos autónomos, debido a su capacidad para modelar relaciones complejas y aprender de los datos.

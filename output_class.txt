@@ -1,0 +1,27 @@
+Artificial Intelligence (AI) refers to the simulation of human intelligence processes by machines, particularly computer systems. These processes include learning (the acquisition of information and rules for using the information), reasoning (using rules to reach approximate or definite conclusions), and self-correction. AI can be categorized into two main types:
+
+1. **Narrow AI (Weak AI):** This is AI that is designed and trained for a specific task, such as facial recognition, internet searches, or self-driving cars. It operates under a limited set of constraints and is the type of AI most commonly used today.
+
+2. **General AI (Strong AI or AGI):** This is the concept of AI with generalized human cognitive abilities, meaning that when presented with an unfamiliar task, it can find a solution or perform specific tasks with human-like proficiency. General AI is currently theoretical and has not yet been achieved.
+
+AI applications can be found across various industries, ranging from healthcare (diagnosing diseases), finance (algorithmic trading, fraud detection), to customer service (chatbots) and more.
+
+Here are some sources you can investigate for more information on AI:
+
+1. **Books:**
+   - "Artificial Intelligence: A Guide to Intelligent Systems" by Michael Negnevitsky.
+   - "Artificial Intelligence: A Modern Approach" by Stuart Russell and Peter Norvig.
+
+2. **Online Resources:**
+   - Stanford University's "AI: A Very Short Introduction" online course.
+   - OpenAI's website and blog for insights into cutting-edge AI research.
+
+3. **Research Papers and Journals:**
+   - The Journal of Artificial Intelligence Research (JAIR).
+   - IEEE Transactions on Pattern Analysis and Machine Intelligence.
+
+4. **Organizations:**
+   - The Association for the Advancement of Artificial Intelligence (AAAI).
+   - The European Association for Artificial Intelligence (EurAI).
+
+If you have specific questions about AI, feel free to ask!

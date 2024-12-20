@@ -1,0 +1,7 @@
+Una red neuronal es un modelo computacional inspirado en la estructura y funcionamiento del cerebro humano, diseñado para reconocer patrones y realizar tareas como clasificación, regresión y reconocimiento de imágenes. Las redes neuronales están formadas por unidades básicas llamadas neuronas, organizadas en capas. Cada neurona recibe una serie de entradas, las procesa a través de una función de activación y genera una salida.
+
+Existen diferentes tipos de redes neuronales, desde las más simples como las perceptrones, hasta las más complejas como las redes neuronales profundas y las redes neuronales convolucionales. Las redes profundas, también conocidas como deep learning, constan de múltiples capas entre la capa de entrada y la capa de salida, lo que les permite aprender representaciones de datos más abstractas y complejas.
+
+El proceso de aprendizaje en una red neuronal generalmente se realiza mediante un algoritmo llamado retropropagación, que ajusta los pesos de las conexiones entre neuronas para minimizar la diferencia entre las salidas predichas por la red y las salidas deseadas.
+
+Las redes neuronales se utilizan en una amplia variedad de aplicaciones, incluyendo reconocimiento de voz, traducción automática, detección de fraudes y conducción autónoma, entre otras.
