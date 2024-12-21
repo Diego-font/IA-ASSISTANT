@@ -1,95 +1,79 @@
-
 from openai import OpenAI 
 import os
 import dotenv
 import time
+import requests
+import grabar_audio
+
 
 
 dotenv.load_dotenv()
 client=OpenAI(api_key=os.environ.get("API_KEY_CHATGPT"))
 
-audio_file= open("grabacion.wav", "rb")
-transcription = client.audio.transcriptions.create(
-  model="whisper-1", 
-  file=audio_file,
-  prompt="The audio is always a order that you have to traduce clear",
-  response_format="text",
-  temperature=0.2
-)
+
+
+grabar_audio.grabar_audio()
+
+try:
+    audio_file= open("grabacion.wav", "rb")
+    transcription = client.audio.transcriptions.create(
+    model="whisper-1", 
+    file=audio_file,
+    prompt="if you have problems write problem, no more",
+    response_format="text",
+    temperature=0.2
+    )
+except ValueError:
+    valor_cambio=False
+    print("Error: "+ValueError)
+
+
 print(transcription)
 
-with open("orden.txt", "w") as archivo:
-    texto = transcription
-    archivo.write(texto)
+if transcription=="problem" or transcription=="":
+    print("No hay peticiones")
+    
 
-#Assistant read the file
-file = client.files.create(
-  file=open('orden.txt',"rb"),
-  purpose='assistants',
-)
+else: 
+    with open("orden.txt", "w") as archivo:
+        texto = transcription
+        archivo.write(texto)
+    completion = client.chat.completions.create(
+        model="gpt-4o",
+        messages=[
+            {"role": "system", "content": "You have to answare the question with presition, information's sources and like a professional in the field"},
+            {
+                "role": "user",
+                "content": transcription
+            }
+        ]
+    )
 
-# Create an assistant using the file ID
-assistant = client.beta.assistants.create(
-  instructions="You are teacher of Artificial Intelligense. Explain what is AI, give sources for investigation and answer the questions",
-  model="gpt-4o",
-  tools=[{"type": "code_interpreter"}],
-  tool_resources={
-    "code_interpreter": {
-      "file_ids": [file.id]
-    }
-  }
-)
+    chat_answer=completion.choices[0].message
+    print(completion.choices[0].message)
 
-#Prove the first thread 
-thread = client.beta.threads.create(
-  messages=[
-    {
-      "role": "user",
-      "content": "Answer the question, and give sources for searching",
-      "file_ids": [file.id]
-    }
-  ]
-)
-
-#Make the run client 
-run = client.beta.threads.runs.create(
-    thread_id=thread.id,
-    assistant_id=assistant.id,
-)
-
-messages = client.beta.threads.messages.list(thread_id=thread.id)
+    texto=chat_answer.content
+    with open("output_question.txt", "w") as archivo:
+        archivo.write(texto)
 
 
-while True:
-    messages = client.beta.threads.messages.list(thread_id=thread.id)
-    try:
-        #See if image has been created
-        messages.data[0].content[0].image_file
-        #Sleep to make sure run has completed
-        time.sleep(20)
-        print('Question solved')
-        break
-    except:
-        time.sleep(10)
-        print('Assistant still working...')
+    response = client.images.generate(
+        model="dall-e-3",
+        prompt="Represent the answare of:"+transcription,
+        size="1024x1024",
+        quality="standard",
+        n=1,
+    )
 
-response = client.images.generate(
-  model="dall-e-3",
-  prompt="Represent a great class of AI",
-  size="1024x1024",
-  quality="standard",
-  n=1,
-)
+    image_url = response.data[0].url
 
-image_url = response.data[0].url
+    # Descargar y guardar la imagen
+    image_name = "image_question.png"  # Nombre del archivo para guardar la imagen
+    response_image = requests.get(image_url)
 
-# Descargar y guardar la imagen
-image_name = "teacher_ai_class.png"  # Nombre del archivo para guardar la imagen
-response_image = requests.get(image_url)
-
-if response_image.status_code == 200:  # Verificar que la descarga fue exitosa
-    with open(image_name, "wb") as img_file:
-        img_file.write(response_image.content)
-    print(f"Imagen guardada como {image_name}")
-else:
-    print(f"Error al descargar la imagen. Código de estado: {response_image.status_code}")
+    if response_image.status_code == 200:  # Verificar que la descarga fue exitosa
+        with open(image_name, "wb") as img_file:
+            img_file.write(response_image.content)
+        print(f"Imagen guardada como {image_name}")
+    else:
+        print(f"Error al descargar la imagen. Código de estado: {response_image.status_code}")
